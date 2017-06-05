@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Trends list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Input</th>
+                <th>Updatetime</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for trend in trends %}
+            <tr>
+                <td><a href="{{ path('trend_show', { 'id': trend.id }) }}">{{ trend.id }}</a></td>
+                <td>{{ trend.input }}</td>
+                <td>{% if trend.updateTime %}{{ trend.updateTime|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('trend_show', { 'id': trend.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('trend_edit', { 'id': trend.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('trend_new') }}">Create a new trend</a>
+        </li>
+    </ul>
+{% endblock %}

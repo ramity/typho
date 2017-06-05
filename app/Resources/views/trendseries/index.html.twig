@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Trendseries list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Time</th>
+                <th>Searchpercent</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for trendSeries in trendSeries %}
+            <tr>
+                <td><a href="{{ path('trend_series_show', { 'id': trendSeries.id }) }}">{{ trendSeries.id }}</a></td>
+                <td>{% if trendSeries.time %}{{ trendSeries.time|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ trendSeries.searchPercent }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('trend_series_show', { 'id': trendSeries.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('trend_series_edit', { 'id': trendSeries.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('trend_series_new') }}">Create a new trendSeries</a>
+        </li>
+    </ul>
+{% endblock %}

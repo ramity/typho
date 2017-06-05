@@ -1,0 +1,4 @@
+services:
+  ApiController:
+    class: StockBundle\Service\ApiController
+    arguments: [%api_controller_options%]

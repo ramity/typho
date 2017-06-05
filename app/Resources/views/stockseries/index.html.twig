@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Stockseries list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Time</th>
+                <th>Open</th>
+                <th>High</th>
+                <th>Low</th>
+                <th>Close</th>
+                <th>Volume</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for stockSeries in stockSeries %}
+            <tr>
+                <td><a href="{{ path('stock_series_show', { 'id': stockSeries.id }) }}">{{ stockSeries.id }}</a></td>
+                <td>{% if stockSeries.time %}{{ stockSeries.time|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ stockSeries.open }}</td>
+                <td>{{ stockSeries.high }}</td>
+                <td>{{ stockSeries.low }}</td>
+                <td>{{ stockSeries.close }}</td>
+                <td>{{ stockSeries.volume }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('stock_series_show', { 'id': stockSeries.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('stock_series_edit', { 'id': stockSeries.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('stock_series_new') }}">Create a new stockSeries</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Stockseries</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ stockSeries.id }}</td>
+            </tr>
+            <tr>
+                <th>Time</th>
+                <td>{% if stockSeries.time %}{{ stockSeries.time|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Open</th>
+                <td>{{ stockSeries.open }}</td>
+            </tr>
+            <tr>
+                <th>High</th>
+                <td>{{ stockSeries.high }}</td>
+            </tr>
+            <tr>
+                <th>Low</th>
+                <td>{{ stockSeries.low }}</td>
+            </tr>
+            <tr>
+                <th>Close</th>
+                <td>{{ stockSeries.close }}</td>
+            </tr>
+            <tr>
+                <th>Volume</th>
+                <td>{{ stockSeries.volume }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('stock_series_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('stock_series_edit', { 'id': stockSeries.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
